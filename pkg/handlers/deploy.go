@@ -346,6 +346,41 @@ func buildEnvVars(request *types.FunctionDeployment) []corev1.EnvVar {
 		})
 	}
 
+	// add downward apis
+	envVars = append(envVars, corev1.EnvVar{
+		Name: "MY_NODE_NAME",
+		ValueFrom: &corev1.EnvVarSource{
+			FieldRef: &corev1.ObjectFieldSelector{
+				FieldPath: "spec.nodeName",
+			},
+		},
+	})
+	envVars = append(envVars, corev1.EnvVar{
+		Name: "MY_NODE_IP",
+		ValueFrom: &corev1.EnvVarSource{
+			FieldRef: &corev1.ObjectFieldSelector{
+				FieldPath: "status.hostIP",
+			},
+		},
+	})
+
+	envVars = append(envVars, corev1.EnvVar{
+		Name: "MY_POD_NAME",
+		ValueFrom: &corev1.EnvVarSource{
+			FieldRef: &corev1.ObjectFieldSelector{
+				FieldPath: "metadata.name",
+			},
+		},
+	})
+	envVars = append(envVars, corev1.EnvVar{
+		Name: "MY_POD_IP",
+		ValueFrom: &corev1.EnvVarSource{
+			FieldRef: &corev1.ObjectFieldSelector{
+				FieldPath: "status.podIP",
+			},
+		},
+	})
+
 	sort.SliceStable(envVars, func(i, j int) bool {
 		return strings.Compare(envVars[i].Name, envVars[j].Name) == -1
 	})
