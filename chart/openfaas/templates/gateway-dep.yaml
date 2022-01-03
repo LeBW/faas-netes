@@ -84,6 +84,10 @@ spec:
         - name: logs_provider_url
           value: "{{ .Values.gateway.logsProviderURL }}"
         {{- end }}
+        {{- if .Values.gateway.predictorURL }}
+        - name: predictor_url
+          value: "{{ .Values.gateway.predictorURL }}"
+        {{- end }}
         - name: read_timeout
           value: "{{ .Values.gateway.readTimeout }}"
         - name: write_timeout

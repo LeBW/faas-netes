@@ -58,7 +58,7 @@ faasIdler:
       memory: "64Mi"
 
 gateway:
-  image: ghcr.io/openfaas/gateway:0.21.1
+  image: registry.cn-shanghai.aliyuncs.com/libw/gateway:latest
   readTimeout: "65s"
   writeTimeout: "65s"
   upstreamTimeout: "60s"  # Must be smaller than read/write_timeout
@@ -72,6 +72,7 @@ gateway:
   # Custom logs provider url. For example openfaas-loki would be
   # "http://ofloki-openfaas-loki.openfaas:9191/"
   logsProviderURL: ""
+  predictorURL: "http://predictor:8080"
   resources:
     requests:
       memory: "120Mi"
