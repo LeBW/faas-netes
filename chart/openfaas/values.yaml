@@ -72,7 +72,7 @@ gateway:
   # Custom logs provider url. For example openfaas-loki would be
   # "http://ofloki-openfaas-loki.openfaas:9191/"
   logsProviderURL: ""
-  predictorURL: "http://predictor:8080"
+  predictorURL: "http://faas-predictor-service.openfaas:5000"
   resources:
     requests:
       memory: "120Mi"
